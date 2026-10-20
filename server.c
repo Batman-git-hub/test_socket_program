@@ -19,7 +19,7 @@
 
 #define BUFFER_SIZE (8 * 1024)
 #define LISTEN_BACKLOG 10
-#define POLL_TIMEOUT (10 * 1000)
+#define POLL_TIMEOUT (100 * 1000)
 
 /* function declaration */
 int init_server(int port, struct sockaddr_in *addr);
