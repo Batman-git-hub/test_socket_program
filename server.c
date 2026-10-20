@@ -99,7 +99,7 @@ handle_new_connection(int server_fd)
         return -1;
     }
 
-    fprintf(stderr, "Connection Accepted\n");
+    // fprintf(stderr, "Connection Accepted\n");
 
     return 0;
 }
@@ -135,11 +135,11 @@ handle_client_data(int index)
         delete_fd_from_pfd(index);
         return 0;
     }
-    fprintf(stdout, "From: (ip-address: %s, port: %d)\n"
+    fprintf(stdout, "From -> %s:%d\n"
         , (get_client_address(index, ip_addr, sizeof(ip_addr)) == NULL) ? "unknown" : ip_addr
         , get_client_port(index)
     );
-    fprintf(stdout, "Bytes Received: %d\n", recv_bytes);
+    fprintf(stdout, "Received: %d bytes\n", recv_bytes);
     fprintf(stdout, "%.*s\n", recv_bytes, buffer);
 
     fprintf(stdout, "\n");
@@ -147,21 +147,24 @@ handle_client_data(int index)
     if (send_bytes < 0) {
         fprintf(stderr, "send: %s\n", strerror(errno));
     } else if (send_bytes == 0) {
-        fprintf(stdout, "Bytes Sent: %d\n", send_bytes);
+        fprintf(stdout, "Sent: %d bytes\n", send_bytes);
     } else {
         if (send_bytes < strlen(response)) {
-            fprintf(stdout, "Bytes Sent (partial): %d\n", send_bytes);
-            fprintf(stdout, "Response sent partially\n");
+            fprintf(stdout, "Sent: %d bytes (partial)\n", send_bytes);
+            // fprintf(stdout, "Response sent partially\n");
         } else {
-            fprintf(stdout, "Bytes Sent: %d\n", send_bytes);
-            fprintf(stdout, "Response sent successfully\n");
+            fprintf(stdout, "Sent: %d bytes\n", send_bytes);
+            // fprintf(stdout, "Response sent successfully\n");
         }
     }
 
+    fprintf(stdout, "Disconnecting client\n");
+    /*
     fprintf(stdout, "Disconnecting client -> %s:%d\n"
         , (get_client_address(index, ip_addr, sizeof(ip_addr)) == NULL) ? "unknown" : ip_addr
         , get_client_port(index)
     );
+    */
     delete_fd_from_pfd(index);
 
     return 0;
