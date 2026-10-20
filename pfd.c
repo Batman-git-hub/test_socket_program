@@ -202,13 +202,13 @@ print_byte_string(FILE *fp, char *str, int n_bytes)
 {
     for (int index = 0; index < n_bytes; index++) {
         if (str[index] >= 32 && str[index] <= 126) {
-            fprintf(fp, "%c", str[index]);
+            fprintf(fp, "%c", (unsigned char)str[index]);
         } else if (str[index] == '\r' || str[index] == '\n') {
-            fprintf(fp, "%c", str[index]);
+            fprintf(fp, "%c", (unsigned char)str[index]);
         } else if (str[index] == '\0') {
             break;
         } else {
-            fprintf(fp, "\\x%02X", str[index]);
+            fprintf(fp, "\\x%02X", (unsigned char)str[index]);
         }
     }
 }
