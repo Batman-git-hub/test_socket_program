@@ -230,7 +230,7 @@ main(int argc, char *argv[])
             }
         }
         if (return_value == 0) {
-            fprintf(stdout, "\npoll timeout occurred\n");
+            fprintf(stdout, "poll timeout occurred\n");
             close_timeout_clients(server_fd);
         }
     }
