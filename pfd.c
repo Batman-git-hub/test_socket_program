@@ -205,6 +205,8 @@ print_byte_string(FILE *fp, char *str, int n_bytes)
             fprintf(fp, "%c", str[index]);
         } else if (str[index] == '\r' || str[index] == '\n') {
             fprintf(fp, "%c", str[index]);
+        } else if (str[index] == '\0') {
+            break;
         } else {
             fprintf(fp, "\\x%02X", str[index]);
         }
