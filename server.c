@@ -140,7 +140,8 @@ handle_client_data(int index)
         , get_client_port(index)
     );
     fprintf(stdout, "Received: %d bytes\n", recv_bytes);
-    fprintf(stdout, "%.*s\n", recv_bytes, buffer);
+    // fprintf(stdout, "%.*s\n", recv_bytes, buffer);
+    print_byte_string(stdout, buffer, recv_bytes);
 
     fprintf(stdout, "\n");
     send_bytes = send(client_fd, response, strlen(response), MSG_NOSIGNAL);

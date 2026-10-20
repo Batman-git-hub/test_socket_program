@@ -196,3 +196,19 @@ get_port(struct sockaddr_storage addr)
 {
     return ntohs(((struct sockaddr_in*)&addr)->sin_port);
 }
+
+void 
+print_byte_string(FILE *fp, char *str, int n_bytes)
+{
+    for (int index = 0; index < n_bytes; index++) {
+        if (str[index] >= 32 && str[index] <= 126) {
+            fprintf(fp, "%c", str[index]);
+        } else if (str[index] == '\r' || str[index] == '\n') {
+            fprintf(fp, "%c", str[index]);
+        } else if (str[index] == '\0') {
+            break;
+        } else {
+            fprintf(fp, "\\x%02X", str[index]);
+        }
+    }
+}

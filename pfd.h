@@ -31,4 +31,6 @@ char* get_client_address(int index, char *str, int size);
 int get_port(struct sockaddr_storage addr);
 int get_client_port(int index);
 
+void print_byte_string(FILE *fp, char *str, int n_bytes);
+
 #endif
