@@ -110,7 +110,7 @@ handle_client_data(int index)
     int client_fd, recv_bytes, send_bytes;
     char ip_addr[INET6_ADDRSTRLEN];
     char *response = "HTTP/1.0 200 OK\r\n"
-        "Sever: your_dad\r\n"
+        "Server: your_dad\r\n"
         "Content-type: text/plain\r\n"
         "Content-length: 18\r\n"
         "\r\n"
